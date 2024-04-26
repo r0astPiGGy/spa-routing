@@ -2,4 +2,11 @@
     import "../app.css";
 </script>
 
+<header class="relative px-4 sm:px-6 md:px-8 mx-auto max-w-7xl">
+    <div class="py-4 border-b border-b-gray-200">
+        <a class="text-lg" href="/">spa-routing</a>
+    </div>
+</header>
+
 <slot />
+
