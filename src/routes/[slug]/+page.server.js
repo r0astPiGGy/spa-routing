@@ -5,7 +5,7 @@ import {getAlbumsByUserId, getAlbumsByUserIdWithPreviews} from "$lib/data/albums
 export async function load({ params }) {
     const user = await getUserById(params.slug)
 
-    if (!user) throw error(404)
+    if (!user?.id) throw error(404)
 
     const albums = await getAlbumsByUserIdWithPreviews(user.id)
 
