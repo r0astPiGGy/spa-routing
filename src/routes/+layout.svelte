@@ -1,5 +1,7 @@
 <script>
     import "../app.css";
+
+    export const ssr = false
 </script>
 
 <header class="relative px-4 sm:px-6 md:px-8 mx-auto max-w-7xl">

@@ -1,14 +1,5 @@
-
 <script>
-
-    const user = {
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "phone": "1-770-736-8031 x56442"
-    };
-
+    export let user;
 </script>
 
 <!--
@@ -17,7 +8,7 @@
     email,
     phone
 -->
-<a href="/{user.id}" class="max-w-full shadow-lg ring-1 ring-gray-900/5 rounded-lg bg-white max-h-fit px-6 py-8 transition-all hover:ring-gray-900/15">
+<a href="/{user.id}" class="max-w-full shadow-lg ring-1 ring-gray-900/5 rounded-lg bg-white max-h-fit px-6 py-8 transition-all hover:ring-gray-900/20">
     <div>
         <p class="text-xs">{user.username}</p>
         <h3 class="text-2xl font-semibold">{user.name}</h3>
