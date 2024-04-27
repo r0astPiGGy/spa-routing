@@ -8,5 +8,15 @@
     </div>
 </header>
 
-<slot />
 
+<section class="section pt-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <slot />
+    </div>
+</section>
+
+<style lang="postcss">
+    :global(html) {
+        background-color: theme(colors.gray.100);
+    }
+</style>
