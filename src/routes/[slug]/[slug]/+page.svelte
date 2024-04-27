@@ -12,9 +12,7 @@
     let newPhotos = [];
 
     async function fetchData() {
-        console.log("fetching data")
         newPhotos = await getPhotosByAlbumId(data.album.id, page)
-        console.log(newPhotos.length)
     }
 
     onMount(() => {
@@ -26,7 +24,6 @@
         ...newPhotos
     ]
 </script>
-
 
 <svelte:head>
     <title>{data.album.title} - Photos | spa-routing</title>

@@ -9,10 +9,11 @@
     phone
 -->
 <a href="/{user.id}" class="max-w-full shadow-lg ring-1 ring-gray-900/5 rounded-lg bg-white max-h-fit px-6 py-8 transition-all hover:ring-gray-900/20">
-    <div>
-        <p class="text-xs">{user.username}</p>
-        <h3 class="text-2xl font-semibold">{user.name}</h3>
-
+    <div class="h-full flex flex-col justify-between">
+        <div>
+            <p class="text-xs">{user.username}</p>
+            <h3 class="text-2xl font-semibold">{user.name}</h3>
+        </div>
         <ul class="space-y-2 mt-4">
             <li class="flex items-center">
                 <svg class="w-5 h-5 text-gray-800 dark:text-white"
