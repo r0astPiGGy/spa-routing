@@ -1,27 +1,45 @@
 <script>
-    import Photo from "$lib/components/Photo.svelte";
+    import PhotoCard from "$lib/components/PhotoCard.svelte";
+    import InfiniteScroll from "$lib/components/InfiniteScroll.svelte";
+    import {onMount} from "svelte";
+    import {getPhotosByAlbumId} from "$lib/data/albums.js";
+
+    export let data;
+
+    let page = 1;
+
+    let allPhotos = [];
+    let newPhotos = [];
+
+    async function fetchData() {
+        console.log("fetching data")
+        newPhotos = await getPhotosByAlbumId(data.album.id, page)
+        console.log(newPhotos.length)
+    }
+
+    onMount(() => {
+        fetchData()
+    })
+
+    $: allPhotos = [
+        ...allPhotos,
+        ...newPhotos
+    ]
 </script>
 
 
 <svelte:head>
-    <title>Lorem Ipsum - Photos | spa-routing</title>
+    <title>{data.album.title} - Photos | spa-routing</title>
 </svelte:head>
 
-
-<p>Lorem ipsum</p>
+<p>{data.album.title}</p>
 <h1 class="text-4xl font-bold mt-2 mb-12">Photos</h1>
 <div class="grid grid-cols-1 divide-y divide-x lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
-    <Photo/>
+    {#each allPhotos as photo}
+        <PhotoCard photo={photo}/>
+    {/each}
+    <InfiniteScroll
+            hasMore={newPhotos.length}
+            on:loadMore={() => {page++; fetchData()}}
+    />
 </div>

@@ -1,7 +1,11 @@
-import {BASE_URL} from "$lib/const.js";
+import {BASE_URL, PHOTOS_PER_PAGE} from "$lib/const.js";
 
 export async function getAlbumsByUserId(userId) {
-    const albums = await fetch(`${BASE_URL}/users/${userId}/albums/`).then(r => r.json())
+    return await fetch(`${BASE_URL}/users/${userId}/albums/`).then(r => r.json())
+}
+
+export async function getAlbumsByUserIdWithPreviews(userId) {
+    const albums = await getAlbumsByUserId(userId)
 
     return await Promise
         .all(albums.map(it => getPreview(it.id)))
@@ -14,15 +18,20 @@ export async function getAlbumsByUserId(userId) {
             })))
 }
 
-async function getPreview(albumId) {
-    return await getPhotosByAlbumId(albumId).then(photos => photos[0])
+export async function getAlbumById(albumId) {
+    return await fetch(`${BASE_URL}/albums/${albumId}/`).then(r => r.json())
 }
 
-export async function getPhotosByAlbumId(albumId, page = 0, perPage = 10) {
+export async function getPreview(albumId) {
+    return await getPhotosByAlbumId(albumId, 1, 1).then(photos => photos[0])
+}
+
+export async function getPhotosByAlbumId(albumId, page = 1, perPage = PHOTOS_PER_PAGE) {
     const params = new URLSearchParams(
         {
-            "_perPage": perPage,
-            "_page": page
+            "_per_page": perPage,
+            "_page": page,
+            "_limit": perPage
         }
     ).toString()
 
